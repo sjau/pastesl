@@ -14,7 +14,7 @@ Then edit your configuration.nix and find the following block:
 ```
 environment.systemPackages = with pkgs; [
 ];
-``
+```
 add between the [ ] brackets the following line
 
 ```
