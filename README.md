@@ -2,7 +2,10 @@
 Bash script to make a paste at the simply linux pastebin
 
 # Usage
-Run the script as follows:  pastesl /path/to/file
+Run the script as follows:
+```
+pastesl /path/to/file
+```
 You will then be asked for how long the paste should be available and what syntax highlighting should be used
 
 # Installation
