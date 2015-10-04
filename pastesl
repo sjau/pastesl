@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+
+[[ $# -ge 1 && -f "$1" ]] && input="$1" || input="-"
+then
+    data="text@${input}"
+else
+    data=${input}
+fi
+
+echo ""
+echo "Enter expiration. Use m for minutes, h for hours and d for days"
+read -p "Set '0' for no expiration. Examples: 10m -> 10 Minutes, 3d -> 3 days:  "
+echo # Just to move to a new line
+
+expiration="${REPLY}"
+timeframe="${expiration: -1}"
+duration="${expiration:0:-1}"
+case "${timeframe}" in
+    0) expire=0; ;;
+    m) expire=$((duration)) ;;
+    h) expire=$((duration * 60)) ;;
+    d) expire=$((duration * 60 * 24)) ;;
+    *) echo "No valid expiration give. Try again."; exit; ;;
+esac
+
+echo ""
+echo "Enter language for syntax highlighting."
+read -p "Examples: text, bash, html15, php, javascript, c, cpp, lua, python, ruby, xml:  "
+echo # Just to move to a new line
+
+language="${REPLY}"
+if [[ -z $language ]]
+then
+    language="text"
+fi
+
+curl -d "expire=${expire}" -d "lang=${language}" --data-urlencode "${data}" "http://paste.simplylinux.ch/api/create?apikey=isiengie0ohqua7dee2leibooGh1ai"
