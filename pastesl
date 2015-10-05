@@ -1,15 +1,16 @@
 #!/usr/bin/env bash
 
-if [[ $# -ge 1 && -f "$1" ]] && input="$1" || input="-"
+if [[ $# -ge 1 && -f "$1" ]]
 then
-    data="text@${input}"
+    data="text@${1}"
 else
-    data=${input}
+    read input;
+    data="text=${input}"
 fi
 
 echo ""
 echo "Enter expiration. Use m for minutes, h for hours and d for days"
-read -p "Set '0' for no expiration. Examples: 10m -> 10 Minutes, 3d -> 3 days:  "
+read -p "Set '0' for no expiration. Examples: 10m -> 10 Minutes, 3d -> 3 days:  " </dev/tty
 echo # Just to move to a new line
 
 expiration="${REPLY}"
@@ -25,7 +26,7 @@ esac
 
 echo ""
 echo "Enter language for syntax highlighting."
-read -p "Examples: text, bash, html15, php, javascript, c, cpp, lua, python, ruby, xml:  "
+read -p "Examples: text, bash, html15, php, javascript, c, cpp, lua, python, ruby, xml:  " </dev/tty
 echo # Just to move to a new line
 
 language="${REPLY}"
