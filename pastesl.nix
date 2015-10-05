@@ -1,4 +1,4 @@
-{stdenv, fetchgit }:
+{stdenv, curl, fetchgit }:
 stdenv.mkDerivation {
   name = "pastesl-git";
   src = fetchgit {
@@ -9,5 +9,11 @@ stdenv.mkDerivation {
   installPhase = ''
     mkdir -p $out/bin
     cp -n pastesl $out/bin/
+
+    for i in $out/bin/*; do
+      substituteInPlace $i \
+        --replace curl ${curl}/bin/curl
+    done
+
   '';
 }
