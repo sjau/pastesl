@@ -1,11 +1,9 @@
 #!/usr/bin/env bash
 
-if [[ $# -ge 1 && -f "$1" ]]
-then
+if [[ $# -ge 1 && -f "$1" ]]; then
     data="text@${1}"
 else
-    read input;
-    data="text=${input}"
+    data="text@-"
 fi
 
 echo ""
