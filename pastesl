@@ -1,7 +1,32 @@
 #!/usr/bin/env bash
 
+getSyntax() {
+    case "${fileExt}" in
+        txt)                    lang="text"             ;;
+        htm|html|html5)         lang="html5"            ;;
+        css)                    lang="css"              ;;
+        js)                     lang="javascript"       ;;
+        php|php3|php4)          lang="php"              ;;
+        py)                     lang="python"           ;;
+        rb)                     lang="ruby"             ;;
+        bash|sh)                lang="bash"             ;;
+        nix)                    lang="bash"             ;;
+        erl|hrl)                lang="erlang"           ;;
+        go)                     lang="go"               ;;
+        c)                      lang="c"                ;;
+        cpp)                    lang="cpp"              ;;
+        diff)                   lang="diff"             ;;
+        tex)                    lang="latex"            ;;
+        sql)                    lang="sql"              ;;
+        xml)                    lang="xml"              ;;
+    esac
+}
+
+
 if [[ $# -ge 1 && -f "$1" ]]; then
     data="text@${1}"
+    fileExt="${1##*.}"
+    getSyntax
 else
     data="text@-"
 fi
@@ -22,15 +47,16 @@ case "${timeframe}" in
     *) echo "No valid expiration give. Try again."; exit; ;;
 esac
 
-echo ""
-echo "Enter language for syntax highlighting."
-read -p "Examples: text, bash, html15, php, javascript, c, cpp, lua, python, ruby, xml:  " </dev/tty
-echo # Just to move to a new line
+if [[ -z "${lang}" ]]; then
+    echo ""
+    echo "Enter language for syntax highlighting."
+    read -p "Examples: text, bash, html15, php, javascript, c, cpp, lua, python, ruby, xml:  " </dev/tty
+    echo # Just to move to a new line
 
-language="${REPLY}"
-if [[ -z $language ]]
-then
-    language="text"
+    lang="${REPLY}"
+    if [[ -z "${lang}" ]]; then
+        lang="text"
+    fi
 fi
 
-curl -d "expire=${expire}" -d "lang=${language}" --data-urlencode "${data}" "http://paste.simplylinux.ch/api/create?apikey=isiengie0ohqua7dee2leibooGh1ai"
+curl -d "expire=${expire}" -d "lang=${lang}" --data-urlencode "${data}" "http://paste.simplylinux.ch/api/create?apikey=isiengie0ohqua7dee2leibooGh1ai"
