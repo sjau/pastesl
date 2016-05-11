@@ -40,11 +40,11 @@ expiration="${REPLY}"
 timeframe="${expiration: -1}"
 duration="${expiration:0:-1}"
 case "${timeframe}" in
-    0) expire=0; ;;
+    0) expire=0 ;;
     m) expire=$((duration)) ;;
     h) expire=$((duration * 60)) ;;
     d) expire=$((duration * 60 * 24)) ;;
-    *) echo "No valid expiration give. Try again."; exit; ;;
+    *) echo "No valid expiration give. Try again."; exit ;;
 esac
 
 if [[ -z "${lang}" ]]; then
