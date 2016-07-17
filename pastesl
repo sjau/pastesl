@@ -50,7 +50,7 @@ esac
 if [[ -z "${lang}" ]]; then
     echo ""
     echo "Enter language for syntax highlighting."
-    read -p "Examples: text, bash, html15, php, javascript, c, cpp, lua, python, ruby, xml:  " </dev/tty
+    read -p "Examples: text, bash, html5, php, javascript, c, cpp, lua, python, ruby, xml:  " </dev/tty
     echo # Just to move to a new line
 
     lang="${REPLY}"
