@@ -59,4 +59,5 @@ if [[ -z "${lang}" ]]; then
     fi
 fi
 
-curl -d "expire=${expire}" -d "lang=${lang}" --data-urlencode "${data}" "https://paste.simplylinux.ch/api/create?apikey=isiengie0ohqua7dee2leibooGh1ai"
+data=$(curl -s -d "expire=${expire}" -d "lang=${lang}" --data-urlencode "${data}" "https://paste.simplylinux.ch/api/create?apikey=isiengie0ohqua7dee2leibooGh1ai")
+printf "${data}" | jq -r '.url'
