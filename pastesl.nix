@@ -4,7 +4,7 @@ stdenv.mkDerivation {
   src = fetchgit {
     url = https://github.com/sjau/pastesl.git;
     rev = "d9eefa4667a098cfa924641bdd6d6a9a31ff35d2";
-    sha256 = "0vk8dzjd947cnkvhnfzavm8y2421hrm17kss6qaky59rliaxh000";
+    sha256 = "YTngMRqaxwdrsxXk8oHq2Ji2sb9ruCkUadv75pUGg8s=";
   };
   installPhase = ''
     mkdir -p $out/bin
